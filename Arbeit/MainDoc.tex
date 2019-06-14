@@ -2,10 +2,13 @@
 
 \usepackage{graphicx}
 \usepackage[english]{babel}
-\usepackage{cite}
-\bibliographystyle{authoryear}
+%\usepackage{cite}
+
+\usepackage{natbib}
+
+\renewcommand{\bibsection}{\section{Sources}}
+
 \begin{document}
-%
 \title{MQTT: Integrity}
 
 \author{Michael Ehrlinger \and Vanessa Hermann \and Nicolas Salomon \and Martin Weinhart}
@@ -34,11 +37,12 @@ The abstract should briefly summarize the contents of the paper in
 \include{Pages/MainBody3}
 \include{Pages/MainBody4}
 \include{Pages/Conclusion}
-\include{Pages/Sources}
-\cite{KHF}
+%\include{Pages/Sources}
 %\include{Pages/SourcesME}
-\bibliography{bibtexME}
 %\bibliographystyle{authoryear}
+\bibliography{bibtexME}
+\bibliographystyle{alpha}
+
 
 
 
