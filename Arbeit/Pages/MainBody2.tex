@@ -2,14 +2,27 @@
 
 One way to ensure that a message has not been changed in any way is to send along the corresponding hash value which is unique for this message or more specifically the odds for a different message to have the same hash value are astronomically low. Note that this only provides a solution for accidentally modified data. If a man in the middle accomplishes to obtain and alter the to be sent information, it is no further effort to recompute the new hash value as well. However, for our definition of data integrity, this must not be possible. In order to achieve the required level of security, we use asynchronous keys to encrypt the computed hash. By encrypting the hash with the sender’s private key and decrypting it with the corresponding public key, we can be certain, that a matching hash value must originate from the owner of the private key used for the encryption. 
 One of the most widely used encryption algorithms is RSA which has been around since 1977 [1]. However, nowadays there are quite a few alternatives to choose from which offer a variety of advantages compared to RSA. One of which is Elliptic Curve Cryptography. This section concentrates on a specific Elliptic Curve called Curve25519 and its benefits.
-Due to this topic’s mathematical complexity and the limited length of this paper, the curve will be explained using the graphical approach.
-First of all, an elliptic curve is not an ellipse. The shape of an elliptic curve varies depending on its underlying formula. Graphic1 shows a basic example. 
+Due to this topic’s mathematical complexity and the limited length of this paper, the curve will be explained using only the graphical approach.
+First of all, an elliptic curve is not an ellipse. The shape of an elliptic curve varies depending on its underlying formula. Figure 1 shows a basic example.
+\begin{figure}
+\centering
+\includegraphics[width=5cm]{Pages/EC/ec.png}
+\caption{Example of an Elliptic Curve}
+\end{figure}
 
 \subsubsection{So how can we encrypt data using a curve?}
-As with any other public-private key encryption algorithm, we have to create a random number, only that in our case, this will already be our private key N. In addition, we need a point G on the curve to generate the public key. In order to do so, we have to understand two fairly simple operations, that we can use for points on an elliptic curve. 
-1. Addition of two points (graphic2): Adding to points A and B to another happens not by simply adding up their x and y coordinates but by the following procedure: By drawing a line through A and B, we intersect the curve at exactly one other point. We reflect this point over the x-axis to get A + B. This is always possible because an elliptic curve is axisymmetric to the x-axis.
-2. Addition of a point to itself (graphic3): Adding a point P to itself is very similar to adding up two different points, but instead of the line intersecting three different points, we have a tangent that touches the graph at P and intersects at another point, which again needs to be reflected over the x-axis to get P + P or 2P.
+As with any other public-private key encryption algorithm, we have to create a random number, only that in our case, this will already be our private key N. In addition, we need a point G on the curve to generate the public key. In order to do so, we have to understand two fairly simple operations, that we can use for points on an elliptic curve.
+1. Addition of two points (Figure 2a): Adding to points A and B to another happens not by simply adding up their x and y coordinates but by the following procedure: By drawing a line through A and B, we intersect the curve at exactly one other point. We reflect this point over the x-axis to get A + B. This is always possible because an elliptic curve is axisymmetric to the x-axis.
+2. Addition of a point to itself (Figure 2b): Adding a point P to itself is very similar to adding up two different points, but instead of the line intersecting three different points, we have a tangent that touches the graph at P and intersects at another point, which again needs to be reflected over the x-axis to get P + P or 2P.
 Using these two operations, either doubling a point or adding two points together, we can find any point on the curve that is a multiple of the point we started with. Exactly this resulting point on the graph, which is the product of N * G, will be the public key.
+
+\begin{figure}%
+    \centering
+    \subfloat[Elliptic Curve point addition]{{\includegraphics[width=5.5cm]{Pages/EC/ec2.png} }}%
+    \qquad
+    \subfloat[Elliptic Curve point multiplication]{{\includegraphics[width=5.5cm]{Pages/EC/ec3.png} }}%
+\caption{Operations on an Elliptic Curve}%
+\end{figure}
 
 \subsubsection{So why does this provide a secure way to encrypt data?}
 In order to crack the encryption, one would have to find the secret number N, which is only possible by checking every multiple of G against the public key and since N is a 256-bit number, this would take many years of computation.
