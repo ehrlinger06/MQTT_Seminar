@@ -7,7 +7,7 @@ A message authentication code (MAC) gets send with the message from the sender t
 Hash-Functions find wide use in constructing a MAC, the reasons for this are a faster execution time than for symmetric block chippers, an essential feature in low power IoT-devices, a second reason is good availability for library code providing suitable hashing algorithms, so used functions are known to work as intended. 
 %Def hash-function%
 \subsubsection{Definition of HMAC}
-Before going more into detail, I want to clarify what is meant by a hash function. “We assume H to be a cryptographic hash function where data is hashed by iterating a basic compression function on blocks of data. We denote by B the byte-length of such blocks, and by L the byte-length of hash outputs. The authentication key K can be of any length up to B, the block length of the hash function. Applications that use keys longer than B bytes will first hash the key using H and then use the resultant L byte string as the actual key to HMAC. In any case, the minimal recommended length for K is L bytes. […] We define two fixed and different strings ipad and opad as follows (the ’i’ and ’o’ are mnemonics for inner and outer)
+Before going more into detail, I want to clarify what is meant by a hash function. ''We assume H to be a cryptographic hash function where data is hashed by iterating a basic compression function on blocks of data. We denote by B the byte-length of such blocks, and by L the byte-length of hash outputs. The authentication key K can be of any length up to B, the block length of the hash function. Applications that use keys longer than B bytes will first hash the key using H and then use the resultant L byte string as the actual key to HMAC. In any case, the minimal recommended length for K is L bytes. $[…]$ We define two fixed and different strings ipad and opad as follows (the ’i’ and ’o’ are mnemonics for inner and outer)
 \begin{center}
 ipad = the byte 0x36 repeated B times \\
 opad = the byte 0x5C repeated B times.
@@ -16,7 +16,7 @@ To compute HMAC over the data ‘text’ we perform
 \begin{center}
 H(K XOR opad, H(K XOR ipad, text))”
 \end{center}
-[RFC].  \\
+\cite{RFC}.  \\
  This definition can be used only for hash-functions, which require a secret key to compute a hash value. The use of a key is necessary, because without a secret key, everyone, who knows the hash function, used to compute the MAC, could compute a valid MAC according to the actually invalid message and therefore making the use of a MAC irrelevant. \\
 %Using underlying hash functions%
 When using a hash function to compute a MAC, the underlying hash-function is used as a black-box \cite{KHF}, so that the function itself could be swapped out without affecting the rest of the code. The reasons for keeping the use of the actual hash-function so flexible are, ease of maintainability, ease of testing and ease of upgradeability. The first two are connected because its recommended to choose a hash function, where the code is open-source, which gives the piece of code support, so possible threats are detected and bugs get fixed sooner. The ease of upgradeability comes through the encapsulation of the code, done to achieve the black-box effect, which supports the already mentioned swapping of hash-functions.
