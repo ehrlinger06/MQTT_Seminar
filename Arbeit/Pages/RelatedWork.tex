@@ -5,11 +5,11 @@
 The basic idea of HMAC’s gets defined by two standards, one provided by Request for Comments over the Internet Society (ISOC) \cite{RFC} and the other on provided by the American department of commerce as a federal information processing standards publication in the category computer security: cryptography \cite{FIBS}. Another notable standard is also provided by Request for Comments over the Internet Society (ISOC), it lists several examples for input into an HMAC generating function and the corresponding output \cite{RFC2}. The necessity to include an integrity mechanism like HMAC is also stated in the paper "Vulnerabilities and Limitations of MQTT Protocol
 Used between IoT Devices" published by "Dan Dinculeană and Xiaochun Cheng" \cite{LIMI}.
 
-\subsection{JSON Web Signature}
-The JSON Web Signature (JWS) is defined an elaboratory described by the Internet Engineering Task Force Standart Track RfC 7515 \cite{rfc7515}.There are also example for the computation and validiation of a JWS with some hmacs and digital signature. Another notable Internet Engineering Task Force Standart Track is the RfC 7519 \cite{rfc7519}describing the JSON Web Token(JWT). The JSON Web Signature is a specification of the JWT.
+\subsection{Message Authentication Codes based on Hash-Functions using Merkle Trees}
+The results of the work from Sebastian Rohde et al. shows „that the Merkle signature scheme provides comparable timings compared to state of the art implementations of RSA and ECDSA, while maintaining a smaller code size.“ \cite{FHB} It is also mentioned in the paper of Hongwei Li et al. That the Merkle hasht tree technique is used tu secure the communication. \cite{METR}
 
 \subsection{Digital Signatures using Elliptic Curve Cryptography}
 The specific Elliptic Curve Curve25519, which this section is about, was first introduced in 2006 in the context of elliptic-curve-Diffie-Hellman functions, which Curve25519 set a new record for \cite{ECDH}. In 2012, an article in the Journal of Cryptographic Engineering depicted the speed and security of Curve25519 implemented in the context of digital signatures \cite{Curve25519}.
 
-\subsection{Message Authentication Codes based on Hash-Functions using Merkle Trees}
-The results of the work from Sebastian Rohde et al. shows „that the Merkle signature scheme provides comparable timings compared to state of the art implementations of RSA and ECDSA, while maintaining a smaller code size.“ \cite{FHB} It is also mentioned in the paper of Hongwei Li et al. That the Merkle hasht tree technique is used tu secure the communication. \cite{METR}
+\subsection{JSON Web Signature}
+The JSON Web Signature (JWS) is defined an elaboratory described by the Internet Engineering Task Force Standart Track RfC 7515 \cite{rfc7515}.There are also example for the computation and validiation of a JWS with some hmacs and digital signature. Another notable Internet Engineering Task Force Standart Track is the RfC 7519 \cite{rfc7519}describing the JSON Web Token(JWT). The JSON Web Signature is a specification of the JWT.
