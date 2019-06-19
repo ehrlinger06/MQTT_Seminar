@@ -1,14 +1,12 @@
 \section{JSON Web Signature}
 
-In the former chapter MACs and digital signatures were discussed one way to 
-JSON
+In the former chapter MACs and digital signatures were discussed. One way to apply them in MQTT to provide integrity is by using them with the "JSON Web Signature"-framework hereinafter examined. The
 "JSON Web Signature (JWS) represents content secured with digital signatures or Message Authentication Codes (MACs) using JSON-based  data structures"\cite{rfc7515}.
-One aufgabenbereich/Möglichkeit  von JWS ist das gewährleisten der Integrität von nachrichten by using Macs or signatures im MQTT Protokoll.(One possebility to use JWS is for providing integrity of messages(namnen googlen) in MQTT).
-A valid JWS consists of these following components : The JOSE Header, the JWS Payload and the JWS Signature.\newline
+A valid JWS consists of these following components : The JOSE Header, the JWS Payload and the JWS Signature.\cite{rfc7515}\newline
 
-The \textbf{JOSE Header} (JSON Object Signing and Encryption ) is a JSON object consisting of a set of Header parameter, which defines the parameters and the cryptographic operations to use to secure the JWS Payload \cite{rfc7515}. There are two types of headers, which combined form the JOSE Header:\newline The \textbf{JWS Protected Header} and the \textbf{JWS Unprotected Header}.\newline
-Both are JSON objects, but the difference is, the JWS Protected Header contains the integrity protected Header Parameters whereas the JWS Unprotected Header contains the not integrity protected parameters *besser unprotected?*.\newline
-An example for a header parameter is the "alg" (algorithm) Header Parameter which must be present in the JOSE Header."(This parameter) identifies the cryptographic algorithm used to secure the JWS. The JWS Signature is not valid if the "alg" value does not represent a supported algorithm or if there is not a key for use with that algorithm associated with the party that digitally signed or MACed the content" \cite{rfc7515}.\newline
+The \textbf{JOSE Header} (JSON Object Signing and Encryption ) is a JSON object consisting of a set of Header Parameters, which defines the parameters and the cryptographic operations used to secure the JWS Payload \cite{rfc7515}. There are two types of headers, which combined form the JOSE Header:\newline The \textbf{JWS Protected Header} and the \textbf{JWS Unprotected Header}.\newline
+Both are JSON objects, but the difference is, the JWS Protected Header contains the integrity protected Header Parameters whereas the JWS Unprotected Header contains the integrity unprotected parameters.\newline
+An example for a Header Parameter is the "alg" (algorithm) Header Parameter which must be present in the JOSE Header. "(This parameter) identifies the cryptographic algorithm used to secure the JWS. The JWS Signature is not valid if the "alg" value does not represent a supported algorithm or if there is not a key for use with that algorithm associated with the party that digitally signed or MACed the content" \cite{rfc7515}.\newline
 
 The \textbf{JWS Payload} can be described as "(t)he sequence of octets to be secured -- a.k.a. the message. It can be any arbitrary sequence of octets"\cite{rfc7515}.\newline
 The claims in a JWT, encoded as a JSON object, are often used as the payload. \cite{rfc7519}\newline
@@ -17,13 +15,15 @@ Two examples for claim names, both not mandatory, but very useful, are "iss" and
 The \textbf{JWS Signature} "is the computation of a Mac or digital signature over the JWS Protected Header and the JWS Payload".\cite{rfc7515}\newline 
 
 The JWS can be further characterized by its two serialisations: The \textbf{JWS Compact Serialization} and the \textbf{JWS JSON Serialization}. 
-In the JWS Compact Serialization the JWS is represented as a compact, URL.safe string and can be portrayed in the following form:\newline    
-BASE64URL(UTF8(JWS Protected Header)).BASE64URL(JWS Payload).BASE64URL(JWS Signature) [mediumfalcon...]
+In the JWS Compact Serialization the JWS is represented as a compact, URL-safe string \cite{rfc7515} and can be portrayed in the following form:\newline    
+BASE64URL(UTF8(JWS Protected Header))\newline.BASE64URL(JWS Payload).BASE64URL(JWS Signature)\cite{Dummies}(linebreak only for display purpose)
+
+
 In this serialization, the JWS Protected Header is used as the JOSE Header. Therefore, no JWS Unprotected Header will be used.
 
-On the contrary to the JWS JSON Serialization, the JWS Compact Serialisation provides no syntax for a JWS Unprotected Header and only supports one digital signature/MAC.
-In the JWS JSON Serialization there are two related syntaxes: a flattered syntax, to secure content with only one MAC/digital signature and a fully general syntax, for securing with more than one MAC/digital signature.\cite{rfc7515} In this section, only the fully general syntax is threatened. 
-A JWS in the fully general JWS JSON Serialization" includes 2 top-level elements: payload and signatures (which is a JSON array), and three sub elements under each entry of the signatures array: protected, header and signature"´\cite{Dummies}
+On the contrary to the JWS JSON Serialization, the JWS Compact Serialization provides no syntax for a JWS Unprotected Header and only supports one digital signature/MAC.
+In the JWS JSON Serialization there are two related syntaxes: a flattered syntax, to secure content with only one MAC/digital signature and a fully general syntax, for securing with more than one MAC/digital signature \cite{rfc7515}. In this section, only the fully general syntax is threatened. 
+A JWS in the fully general JWS JSON Serialization " includes 2 top-level elements: payload and signatures (which is a JSON array), and three sub elements under each entry of the signatures array: protected, header and signature"\cite{Dummies}
 In each entry at least either the value "protected" or the value "header" MUST be present to guarantee the "alg" Header Parameter is present.\cite{rfc7515}\newline
 An example of this concept can be displayed as follows:\newline 
 	" $\{$ "payload":"$<$payload contents $>$",\newline    "signatures":[\newline
@@ -36,34 +36,30 @@ An example of this concept can be displayed as follows:\newline
 For both types of serializations, the computation of a JWS is similar. To create a valid JWS the following steps have to be performed: 
 \begin{enumerate}
 \item "Create the content used as payload" \cite{rfc7515}
-\item Compute the Base64Url-encoded payload 
+\item Compute the Base64Url-encoded payload. 
 \item "Create the JOSE Header with the desired set of Header Parameter as a JSON object." \cite{rfc7515}
 \item Compute the utf8 representation of the JWS Protected Header and base64url-encode it.
-\item Create the signature by using the algorithm, defined in "alg", over  ASCII(BASE64URL(UTF8(JWS Protected Header)).BASE64URL(JWS Payload), which is defined as the JWS Signing Input. If "alg" has the value "none", there will be no signature.
-\item Compute the encoded signature: BASE64URL(JWS Signature)
+\item Create the signature by using the algorithm, defined in "alg",\newline over  ASCII(BASE64URL(UTF8(JWS Protected Header)).BASE64URL(JWS Payload) (linebreak only for display purpose), which is defined as the JWS Signing Input. If "alg" has the value "none", there will be no signature.
+\item Compute the encoded signature: BASE64URL(JWS Signature) .
 \item For the JWS JSON Serialization the steps 3-6 have to be repeated for each MAC/digital signature defined in the JWS JOSE Header.
 \item Compute the specific serialization output. For the structure look at the description of JWS Compact Serialization and JWS JSON Serialization.
 \end{enumerate} \cite{rfc7515}
 
 
 
-As the computation of a JWS, the validation of a JWS is again similar for both types of serialization.It is important to note that if there are multiple signatures, like in the fully general JWS JSON Serialization,  it is application-specific how many and which JWS Signature must be validated successfully.\cite{rfc7515} However, at least one JWS Signature MUST be validated successfully.
+As the computation of a JWS, the validation of a JWS is again similar for both types of serialization. It is important to note that if there are multiple signatures, like in the fully general JWS JSON Serialization,  it is application-specific how many and which JWS Signature must be validated successfully.\cite{rfc7515} However, at least one JWS Signature MUST be validated successfully.
 To validate a JWS following steps have to be performed:\newline  
 \begin{enumerate}
 \item "Parse the JWS representation to extract the serialized values for the components of the JWS."\cite{rfc7515} Look at the specific serialization for the specific components.
 \item Decode the base64url-encoded JWS Protected Header.
-\item Verify that the result of step 2 is a uft8-encoded, valid JSON object.
+\item Verify that the result of step 2 is a UTF8-encoded, valid JSON object.
 \item For the JWS Compact Serialisation the JWS Protected header is used as the JOSE Header. For the JWS JSON Serialisation the JWS Protected Header Members and the JWS Unprotected Header Members combined build the JOSE Header.
 \item Verify that all fields, which are required to be supported, are understood and can be processed by the implementation.
 
-\item Decode the base64url-encoded JWS Payload.
-\item Decode the base64url-encoded JWS Signature.
+\item Decode the Base64Url-encoded JWS Payload.
+\item Decode the Base64Url-encoded JWS Signature.
 \item Validate if the JWS Signing input maced/digitally signed conformed the JWS Signature.
 \item For the JWS JSON Serialisation the steps 4-8 have to be repeated for each MAC/digital signature defined in the JWS JOSE Header.
 \item The JWS MUST be considered invalid if all validations in step 9 failed. (In the case of JWS Compact Serialization it is easy to indicate whether the JWS was validated successfully or not, by the result, whereas in the case of the JWS JSON serialization the result only indicates which validation was successfull and which not.)
 \end{enumerate}
-------------------------
-
-Schluss 
-How precise a JWS can provide integrity depends on which and how much MACs/digital signatures are being used. If there is no algorithm, integrity cannot be guaranteed. In MQTT 
-b the usage of the JWS it is important to remember, that the payload is only BASE64URL encoded and therefore it is easy to read the message.
+How precise a JWS can provide integrity depends on which and how much MACs/digital signatures are being used. If there is no algorithm, integrity cannot be guaranteed. 
