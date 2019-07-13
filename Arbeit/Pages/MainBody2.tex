@@ -1,7 +1,10 @@
 \section{Digital Signatures using Elliptic Curve Cryptography}
 
 One way to ensure that a message has not been changed in any way is to send along the corresponding hash value which is unique for this message or more specifically the odds for a different message to have the same hash value are astronomically low. Note that this only provides a solution for accidentally modified data. If a man in the middle accomplishes to obtain and alter the to be sent information, it is no further effort to recompute the new hash value as well. However, for our definition of data integrity, this must not be possible. In order to achieve the required level of security, we use asynchronous keys to encrypt the computed hash. By encrypting the hash with the sender’s private key and decrypting it with the corresponding public key, we can be certain, that a matching hash value must originate from the owner of the private key used for the encryption. 
-One of the most popular encryption algorithms is RSA. However, nowadays there are quite a few alternatives to choose from which offer a variety of advantages compared to RSA. One of which is Elliptic Curve Cryptography. This section concentrates on a specific Elliptic Curve called Curve25519 and its benefits.
+One of the most popular encryption algorithms is RSA. However, nowadays there are quite a few alternatives to choose from which offer a variety of advantages compared to RSA. One of which is Elliptic Curve Cryptography. 
+
+\subsection{Curve25519}
+This section concentrates on a specific Elliptic Curve called Curve25519 and its benefits.
 Due to this topic’s mathematical complexity, the curve will be explained using only the graphical approach.
 
 \subsubsection{So how can we encrypt data using a curve?}
@@ -25,5 +28,5 @@ For some devices with less memory and small CPUs it can be too much of a computa
 \subsubsection{High security}
 Even though Curve25519 uses key sizes of only 32 Byte, it accomplishes to provide a 128-bit security target, meaning it would take $ 2^{128} $ operations to break the encryption \cite{SecLevel}, which is supposed to be secure until “2031 and Beyond” \cite{KeySize}. As mentioned before, RSA uses 2048 bit keys, while only providing $ 2^{112} $ security target. In order to provide the same level of security using RSA, one would have to use 3072 bit key sizes \cite{KeySize}. Note, that this discrepancy gets even bigger as higher security targets are required. For a 128-bit security level, RSA requires twelve times more memory for its keys, than Elliptic Curve Cryptography does. For a 192-bit security level, this factor increases from 12 to more than 20 \cite{SecLevelInc}.
 
-\subsection{Disadvantages}
+\subsection{Disadvantages of Curve25519}
 There are really no obvious negative aspects of Curve25519, since it did not give up any feature of Elliptic Curves, in order to gain the increase of speed. One thing however, one could argue against not only Curve25519 but Elliptic Curves in general, is that this topic’s mathematical complexity makes it impossible for an average programmer to understand the algorithm let alone implement it himself. This requires developers to trust on the few people, who completely understand the math behind Elliptic Curves.
