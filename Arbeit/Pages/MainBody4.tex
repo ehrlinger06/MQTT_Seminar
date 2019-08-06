@@ -45,7 +45,7 @@ For both types of serializations, the computation of a JWS is similar. To create
 \item Compute the specific serialization output. For the structure look at the description of JWS Compact Serialization and JWS JSON Serialization.
 \end{enumerate} \cite{rfc7515}
 
-
+After the computation the valid JWS could be placed in the payload of an MQTT message and send to the intendet receiver, where it should be validated.
 
 As the computation of a JWS, the validation of a JWS is again similar for both types of serialization. It is important to note that if there are multiple signatures, like in the fully general JWS JSON Serialization,  it is application-specific how many and which JWS Signature must be validated successfully.\cite{rfc7515} However, at least one JWS Signature MUST be validated successfully.
 To validate a JWS following steps have to be performed:\newline  
