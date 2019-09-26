@@ -44,3 +44,11 @@ HMAC’s are used as a security enhancing feature, but next to the security feat
 \subsection{Disadvantages}
 The use of HMAC as a measurment for integrity does not come with any directly attached disadvantages...
 
+\subsection{Impact on MQTT packet}
+key: e9r3rZrvAqEMkAFRpXP9m8pNAXYAQmT4TcmAdHusePWQBspX98bMxHfkp0bHcNWG
+encoded: 4c 1a 7b 15 1e 24 50 c8 cf cf 93 b0 30 cd c7 16 71 dc 49 13
+Hexcode for length: 01110000
+
+After learning the theoretical aspects of HMAC,the next step is looking at the real life impacts on a MQTT packet.
+As mentioned in the chapter "Manageable Keylength and Hashlength" a key used with the HMAC algorithm should be as long as a block length of the used hash function. The hash function used in this example will be SHA-1, a block of SHA-1 is 64 bytes long, so the used key will be just as long. \\ The used key will be "e9r3rZrvAqEMkAFRpXP9m8pNAXYAQmT4TcmAdHuse\\PWQBspX98bMxHfkp0bHcNWG" \\
+hier gehts weiter...
