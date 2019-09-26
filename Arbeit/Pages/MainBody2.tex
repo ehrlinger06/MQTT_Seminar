@@ -10,7 +10,7 @@ First of all, an elliptic curve is not an ellipse. The shape of an elliptic curv
 \begin{figure}
 \centering
 \includegraphics[width=5cm]{Pages/EC/ec.png}
-\caption{Example of an Elliptic Curve}
+\caption{Example of an elliptic curve //(Source: i.stack.imgur.com/ocgjq.png)}
 \label{ec1}
 \end{figure}
 
@@ -22,10 +22,10 @@ Using these two operations, either doubling a point or adding two points togethe
 
 \begin{figure}%
     \centering
-    \subfloat[Elliptic Curve point addition]{{\includegraphics[width=5.5cm]{Pages/EC/ec8.png} }}%
+    \subfloat[elliptic curve point addition]{{\includegraphics[width=5.5cm]{Pages/EC/ec8.png} }}%
     \qquad
-    \subfloat[Elliptic Curve point multiplication]{{\includegraphics[width=5.5cm]{Pages/EC/ec14.png} }}%
-\caption{Operations on an Elliptic Curve}%
+    \subfloat[elliptic curve point multiplication]{{\includegraphics[width=5.5cm]{Pages/EC/ec14.png} }}%
+\caption{Operations on an elliptic curve //(modifactions of Figure \ref{ec1})}%
 \label{ec2}
 \end{figure}
 
@@ -45,4 +45,4 @@ For some devices with less memory and small CPUs it can be too much of a computa
 Even though Curve25519 uses key sizes of only 32 Byte, it accomplishes to provide a 128-bit security target, meaning it would take $ 2^{128} $ operations to break the encryption \cite{SecLevel}, which is supposed to be secure until “2031 and Beyond” \cite{KeySize}. As mentioned before, RSA uses 2048 bit keys, while only providing $ 2^{112} $ security target. In order to provide the same level of security using RSA, one would have to use 3072 bit key sizes \cite{KeySize}. Note, that this discrepancy gets even bigger as higher security targets are required. For a 128-bit security level, RSA requires twelve times more memory for its keys, than Elliptic Curve Cryptography does. For a 192-bit security level, this factor increases from 12 to more than 20 \cite{SecLevelInc}.
 
 \subsection{Disadvantages of Curve25519}
-There are really no obvious negative aspects of Curve25519, since it did not give up any feature of Elliptic Curves, in order to gain the increase of speed. One thing however, one could argue against not only Curve25519 but Elliptic Curves in general, is, that this topic's mathematical complexity makes it impossible for an average programmer to understand the algorithm let alone implement it himself. This requires developers to trust on the few people, who completely understand the math behind Elliptic Curves.
+There are really no obvious negative aspects of Curve25519, since it did not give up any feature of elliptic curves, in order to gain the increase of speed. One thing however, one could argue against not only Curve25519 but elliptic curves in general, is, that this topic's mathematical complexity makes it impossible for an average programmer to understand the algorithm let alone implement it himself. This requires developers to trust on the few people, who completely understand the math behind elliptic curves.
