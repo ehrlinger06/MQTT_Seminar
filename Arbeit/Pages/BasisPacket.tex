@@ -1,7 +1,7 @@
 \section{MQTT Packet}
 
 In this chapter a MQTT packet gets introduced, this will be used to show the impact of the presented techniques on a MQTT packet.
-The used packet contains a PUBLISH-type message for the topic "/is/it/of/integrity" the contained message reads "integrity can be guaranteed, if you are able to recalculated this part:".
+The used packet contains a PUBLISH-type message for the topic "/is/it/of/integrity" the contained message reads "integrity can be guaranteed, if you are able to recalculate this part:".
 The content of the packet will be alter according to the newly attached content, consisting of the calculations done with the individually used techniques. \\
 \newpage
 The packet itself will be displayed in a hexa-decimal notation: \\
@@ -11,13 +11,13 @@ The packet itself will be displayed in a hexa-decimal notation: \\
 \begin{tabular}{lllllllllllllllll}
 \dashuline{45} & \dashuline{00} & \dashuline{00} & \dashuline{8d} & \dashuline{28} & \dashuline{c9} & \dashuline{40} & \dashuline{00} &  & \dashuline{80} & \dashuline{06} & \dashuline{ec} & \dashuline{47} & \dashuline{c0} & \dashuline{a8} & \dashuline{b2} & \dashuline{02} \\
 \dashuline{c0} & \dashuline{a8} & \dashuline{b2} & \dashuline{06} & \dotuline{e6} & \dotuline{a4} & \dotuline{07} & \dotuline{5b} &  & \dotuline{8b} & \dotuline{bf} & \dotuline{b9} & \dotuline{65} & \dotuline{fb} & \dotuline{88} & \dotuline{a4} & \dotuline{e7} \\
-\dotuline{50} & \dotuline{18} & \dotuline{01} & \dotuline{00} & \dotuline{05} & \dotuline{b0} & \dotuline{00} & \dotuline{00} &  & 30 & \uwave{5c} & 00 & 13 & 2f & 69 & 73 & 2f \\
+\dotuline{50} & \dotuline{18} & \dotuline{01} & \dotuline{00} & \dotuline{05} & \dotuline{b0} & \dotuline{00} & \dotuline{00} &  & 30 & \uwave{5b} & 00 & 13 & 2f & 69 & 73 & 2f \\
 69 & 74 & 2f & 6f & 66 & 2f & 69 & 6e &  & 74 & 65 & 67 & 72 & 69 & 74 & 79 & 69 \\
 6e & 74 & 65 & 67 & 72 & 69 & 74 & 79 &  & 20 & 63 & 61 & 6e & 20 & 62 & 65 & 20 \\
 67 & 75 & 61 & 72 & 61 & 6e & 74 & 65 &  & 65 & 64 & 2c & 20 & 69 & 66 & 20 & 79 \\
 6f & 75 & 20 & 61 & 72 & 65 & 20 & 61 &  & 62 & 6c & 65 & 20 & 74 & 6f & 20 & 72 \\
-65 & 63 & 61 & 6c & 63 & 75 & 6c & 61 &  & 74 & 65 & 64 & 20 & 74 & 68 & 69 & 73 \\
-20 & 70 & 61 & 72 & 74 & 3a &    &    &  &    &    &    &    &    &    &    &    \\  
+65 & 63 & 61 & 6c & 63 & 75 & 6c & 61 &  & 74 & 65 & 20 & 74 & 68 & 69 & 73 & 20 \\
+70 & 61 & 72 & 74 & 3a &    &    &  &    &    &    &    &    &    &    &    &    \\  
 \end{tabular}
 \caption{MQTT-packet with the according markers}
 \label{tab:my-table}
