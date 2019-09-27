@@ -45,10 +45,29 @@ HMAC’s are used as a security enhancing feature, but next to the security feat
 The use of HMAC as a measurment for integrity does not come with any directly attached disadvantages...
 
 \subsection{Impact on MQTT packet}
-key: e9r3rZrvAqEMkAFRpXP9m8pNAXYAQmT4TcmAdHusePWQBspX98bMxHfkp0bHcNWG
-encoded: 4c 1a 7b 15 1e 24 50 c8 cf cf 93 b0 30 cd c7 16 71 dc 49 13
-Hexcode for length: 01110000
-
+%key: e9r3rZrvAqEMkAFRpXP9m8pNAXYAQmT4TcmAdHusePWQBspX98bMxHfkp0bHcNWG
+%encoded: 4c 1a 7b 15 1e 24 50 c8 cf cf 93 b0 30 cd c7 16 71 dc 49 13
+%Hexcode for length: 01110000
 After learning the theoretical aspects of HMAC,the next step is looking at the real life impacts on a MQTT packet.
 As mentioned in the chapter "Manageable Keylength and Hashlength" a key used with the HMAC algorithm should be as long as a block length of the used hash function. The hash function used in this example will be SHA-1, a block of SHA-1 is 64 bytes long, so the used key will be just as long. \\ The used key will be "e9r3rZrvAqEMkAFRpXP9m8pNAXYAQmT4TcmAdHuse\\PWQBspX98bMxHfkp0bHcNWG" \\
-hier gehts weiter...
+When using this key to encode the message of the basis paket "integrity can be guaranteed, if you are able to recalculate this part:" the result looks like this "4c 1a 7b 15 1e 24 50 c8 cf cf 93 b0 30 cd c7 16 71 dc 49 13", when already written in hexa-decimal encoding. When the HMAC part gets attached to the packet, the length of the packet gets extended, so the corresponding field need to be changed as well, to enable a correct reading, the length grows from 133 to 153 bytes.\\
+After attaching the HMAC part and changing the length field the basis packet now looks like this:
+\begin{table}[]
+\centering
+\begin{tabular}{lllllllllllllllll}
+45 & 00 & 00 & 8d & 28 & c9 & 40 & 00 &  & 80 & 06 & ec & 47 & c0 & a8 & b2 & 02 \\
+c0 & a8 & b2 & 06 & e6 & a4 & 07 & 5b &  & 8b & bf & b9 & 65 & fb & 88 & a4 & e7 \\
+50 & 18 & 01 & 00 & 05 & b0 & 00 & 00 &  & 30 & 6f & 00 & 13 & 2f & 69 & 73 & 2f \\
+69 & 74 & 2f & 6f & 66 & 2f & 69 & 6e &  & 74 & 65 & 67 & 72 & 69 & 74 & 79 & 69 \\
+6e & 74 & 65 & 67 & 72 & 69 & 74 & 79 &  & 20 & 63 & 61 & 6e & 20 & 62 & 65 & 20 \\
+67 & 75 & 61 & 72 & 61 & 6e & 74 & 65 &  & 65 & 64 & 2c & 20 & 69 & 66 & 20 & 79 \\
+6f & 75 & 20 & 61 & 72 & 65 & 20 & 61 &  & 62 & 6c & 65 & 20 & 74 & 6f & 20 & 72 \\
+65 & 63 & 61 & 6c & 63 & 75 & 6c & 61 &  & 74 & 65 & 20 & 74 & 68 & 69 & 73 & 20 \\
+70 & 61 & 72 & 74 & 3a & 4c & 1a & 7b &  & 15 & 1e & 24 & 50 & c8 & cf & cf & 93 \\
+b0 & 30 & cd & c7 & 16 & 71 & dc & 49 &  & 13 &    &    &    &    &    &    &    \\  
+\end{tabular}
+\caption{Basis packet with attached HMAC and modded length field}
+\label{tab:my-table}
+\end{table}
+
+
