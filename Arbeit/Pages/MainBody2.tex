@@ -46,3 +46,26 @@ Even though Curve25519 uses key sizes of only 32 Byte, it accomplishes to provid
 
 \subsection{Disadvantages of Curve25519}
 There are really no obvious negative aspects of Curve25519, since it did not give up any feature of elliptic curves, in order to gain the increase of speed. One thing however, one could argue against not only Curve25519 but elliptic curves in general, is, that this topic's mathematical complexity makes it impossible for an average programmer to understand the algorithm let alone implement it himself. This requires developers to trust on the few people, who completely understand the math behind elliptic curves.
+
+\subsection{Impact on MQTT packet}
+For demonstration, this paragraph shows...
+\begin{table}[]
+\centering
+\begin{tabular}{lllllllllllllllll}
+45 & 00 & 00 & 8d & 28 & c9 & 40 & 00 &  & 80 & 06 & ec & 47 & c0 & a8 & b2 & 02 \\
+c0 & a8 & b2 & 06 & e6 & a4 & 07 & 5b &  & 8b & bf & b9 & 65 & fb & 88 & a4 & e7 \\
+50 & 18 & 01 & 00 & 05 & b0 & 00 & 00 &  & 30 & 81 & 23 & 00 & 13 & 2f & 69 & 73 \\
+2f & 69 & 74 & 2f & 6f & 66 & 2f & 69 &  & 6e & 74 & 65 & 67 & 72 & 69 & 74 & 79 \\
+69 & 6e & 74 & 65 & 67 & 72 & 69 & 74 &  & 79 & 20 & 63 & 61 & 6e & 20 & 62 & 65 \\
+20 & 67 & 75 & 61 & 72 & 61 & 6e & 74 &  & 65 & 65 & 64 & 2c & 20 & 69 & 66 & 20 \\
+79 & 6f & 75 & 20 & 61 & 72 & 65 & 20 &  & 61 & 62 & 6c & 65 & 20 & 74 & 6f & 20 \\
+72 & 65 & 63 & 61 & 6c & 63 & 75 & 6c &  & 61 & 74 & 65 & 20 & 74 & 68 & 69 & 73 \\
+20 & 70 & 61 & 72 & 74 & 3a & 30 & 45 &  & 02 & 21 & 00 & de & b1 & 60 & fd & 41 \\
+53 & 16 & 1a & e0 & 9a & a7 & 0e & bc &  & 20 & 09 & 70 & 46 & 78 & 71 & f7 & 5e \\
+ca & 9f & fa & 98 & 33 & 8f & e1 & 6d &  & b2 & b0 & dc & 02 & 20 & 51 & 00 & b4 \\
+6f & fe & d7 & 9d & 25 & 16 & 6f & 7a &  & 94 & 0f & 39 & f6 & 4f & 18 & 19 & 75 \\
+3c & f7 & 71 & 04 & 09 & f1 & 47 & 1b &  & 3f & 04 & 6c & 31 & 4a &    &    &    \\   
+\end{tabular}
+\caption{Write here!}
+\label{tab:ecc-table}
+\end{table}
