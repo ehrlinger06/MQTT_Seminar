@@ -6,26 +6,26 @@ One of the most popular encryption algorithms is RSA. However, nowadays, there a
 \subsection{Curve25519}
 This section concentrates on a specific elliptic curve called Curve25519 and its benefits.
 Due to this topic's mathematical complexity, the curve will be explained using only the graphical approach.
-First of all, an elliptic curve is not an ellipse. The shape of an elliptic curve varies depending on its underlying formula. Figure \ref{ec1} shows a basic example.
+First of all, an elliptic curve is not an ellipse. The shape of an elliptic curve varies depending on its underlying formula. Fig. \ref{ec1} shows a basic example.
 \begin{figure}
 \centering
 \includegraphics[width=5cm]{Pages/EC/ec.png}
-\caption{Example of an Elliptic Curve}
+\caption{Example of an elliptic curve \\ (Source: i.stack.imgur.com/ocgjq.png)}
 \label{ec1}
 \end{figure}
 
 \subsubsection{So how can we encrypt data using a curve?}
 As with any other public-private key encryption algorithm, we have to create a random number, only that in our case, this will already be our private key N. In addition, we need a point G on the curve to generate the public key. In order to do so, we have to understand two fairly simple operations, that we can use for points on an elliptic curve.
-1. Addition of two points (Figure \ref{ec2}a): Adding to points A and B to another happens not by simply adding up their x and y coordinates but by the following procedure: By drawing a line through A and B, we intersect the curve at exactly one other point. We reflect this point over the x-axis to get A + B. This is always possible because an elliptic curve is axisymmetric to the x-axis.
-2. Addition of a point to itself (Figure \ref{ec2}b): Adding a point P to itself is very similar to adding up two different points, but instead of the line intersecting three different points, we have a tangent that touches the graph at P and intersects at another point, which again needs to be reflected over the x-axis to get P + P or 2P.
+1. Addition of two points (Fig. \ref{ec2}a): Adding to points A and B to another happens not by simply adding up their x and y coordinates but by the following procedure: By drawing a line through A and B, we intersect the curve at exactly one other point. We reflect this point over the x-axis to get A + B. This is always possible because an elliptic curve is axisymmetric to the x-axis.
+2. Addition of a point to itself (Fig. \ref{ec2}b): Adding a point P to itself is very similar to adding up two different points, but instead of the line intersecting three different points, we have a tangent that touches the graph at P and intersects at another point, which again needs to be reflected over the x-axis to get P + P or 2P.
 Using these two operations, either doubling a point or adding two points together, we can find any point on the curve that is a multiple of the point we started with. Exactly this resulting point on the graph, which is the product of N * G, will be the public key.
 
 \begin{figure}%
     \centering
-    \subfloat[Elliptic Curve point addition]{{\includegraphics[width=5.5cm]{Pages/EC/ec8.png} }}%
+    \subfloat[elliptic curve point addition]{{\includegraphics[width=5.5cm]{Pages/EC/ec8.png} }}%
     \qquad
-    \subfloat[Elliptic Curve point multiplication]{{\includegraphics[width=5.5cm]{Pages/EC/ec14.png} }}%
-\caption{Operations on an Elliptic Curve}%
+    \subfloat[elliptic curve point multiplication]{{\includegraphics[width=5.5cm]{Pages/EC/ec14.png} }}%
+\caption{Operations on an elliptic curve \\ (modifactions of Fig. \ref{ec1})}%
 \label{ec2}
 \end{figure}
 
@@ -45,4 +45,4 @@ For some devices with less memory and small CPUs it can be too much of a computa
 Even though Curve25519 uses key sizes of only 32 Byte, it accomplishes to provide a 128-bit security target, meaning it would take $ 2^{128} $ operations to break the encryption \cite{SecLevel}, which is supposed to be secure until “2031 and Beyond” \cite{KeySize}. As mentioned before, RSA uses 2048 bit keys, while only providing $ 2^{112} $ security target. In order to provide the same level of security using RSA, one would have to use 3072 bit key sizes \cite{KeySize}. Note, that this discrepancy gets even bigger as higher security targets are required. For a 128-bit security level, RSA requires twelve times more memory for its keys, than Elliptic Curve Cryptography does. For a 192-bit security level, this factor increases from 12 to more than 20 \cite{SecLevelInc}.
 
 \subsection{Disadvantages of Curve25519}
-There are really no obvious negative aspects of Curve25519, since it did not give up any feature of Elliptic Curves, in order to gain the increase of speed. One thing however, one could argue against not only Curve25519 but Elliptic Curves in general, is, that this topic's mathematical complexity makes it impossible for an average programmer to understand the algorithm let alone implement it himself. This requires developers to trust on the few people, who completely understand the math behind Elliptic Curves.
+There are really no obvious negative aspects of Curve25519, since it did not give up any feature of elliptic curves, in order to gain the increase of speed. One thing however, one could argue against not only Curve25519 but elliptic curves in general, is, that this topic's mathematical complexity makes it impossible for an average programmer to understand the algorithm let alone implement it himself. This requires developers to trust on the few people, who completely understand the math behind elliptic curves.
