@@ -74,16 +74,10 @@ To validate a JWS, the following steps have to be performed:\newline
 How precise a JWS can provide integrity depends on which and how much MACs/digital signatures are being used. If there is no algorithm, integrity cannot be guaranteed. 
 
 \subsection{Input on MQTT packet}
-To exemplify the impact of an JWS on a Mqtt packet. The hashfuction used is the same as in section ... to exemplify the difference between 
-The JWS Compact Serialization is chosen for this example, because only one MAC will be used for the example
-After following the steps for the computation in section 7.4 and u
-
-Using the HS256 and the key ""
-
-
-The valid JWS is: eyJhbGciOiJIUzI1NiJ9.aW50ZWdyaXR5IGNhbiBiZSBndWFyYW50ZWVkLCBpZiB5b3UgYXJlIGFibGUgdG8gcmVjYWxjdWxhdGUgdGhpcyBwYXJ0Og.eyJhbGciOiJIUzI1NiJ9.ZWViNGQxYmZhMzA0YWQwNzdiOGM5Y2U1ZWUwNmE5Nzc4MGYwNzZmNQ
-
-
+To exemplify the impact of an JWS on a MQTT packet in this section a JWS will be created and appended to the exsisting MQTT packten from chapter 3. \newline As serialization for the JWS the JWS Compact Serialization will be used.
+To integrity-protec the message "integrity can be guaranteed, if you are able to recalculate this part:" the HMAC with SHA-256 (HS256) will be used along with the key "e9r3rZrvAqEMkAFRpXP9m8pNAXYAQmT4TcmAdHusePWQBspX98bM\newline xHfkp0bHcNWG".\newline
+Executing the computation steps in chapter 7.4 the following valid JWS is created:\newline eyJhbGciOiJIUzI1NiJ9.aW50ZWdyaXR5IGNhbiBiZSBndWFyYW50ZWVkLC\newline BpZiB5b3UgYXJlIGFibGUgdG8gcmVjYWxjdWxhdGUgdGhpcyBwYXJ0Og.ey\newline JhbGciOiJIUzI1NiJ9.ZWViNGQxYmZhMzA0YWQwNzdiOGM5Y2U1ZWUwN\newline mE5Nzc4MGYwNzZmNQ ( line break only for represetational purpose). \newline
+To attach the created JWS to the given basic MQTT packet, it must be hexa-decimal encoded resulting : \newline 65794a68624763694f694a49557a49314e694a392e615735305a576479615852354947\newline4e68626942695a53426e64574679595735305a57566b4c4342705a6942356233556759\newline584a6c494746696247556764473867636d566a5957786a645778686447556764476870\newline6379427759584a304f672e65794a68624763694f694a49557a49314e694a392e5a5756\newline694e475178596d5a684d7a4130595751774e7a64694f474d35593255315a5755774e6\newline d45354e7a63344d4759774e7a5a6d4e51 . \newline Table 4 represens the MQTT packet with the appended JWS is :
 
 \begin{table}[]
 \centering
