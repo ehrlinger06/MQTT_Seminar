@@ -1,36 +1,33 @@
 \section{JSON Web Signature}
 
-In the former chapter MACs and digital signatures were discussed. One way to apply them in MQTT to provide integrity is by using them with the "JSON Web Signature"-framework hereinafter examined. 
+In the former chapter MACs and digital signatures were discussed. One way to apply them in MQTT to provide integrity is by using them with the ``JSON Web Signature''-framework hereinafter examined. 
 
 \subsection{Definition of JSON Web Signature}
-The
-"JSON Web Signature (JWS) represents content secured with digital signatures or Message Authentication Codes (MACs) using JSON-based  data structures" \cite{rfc7515}.
-A valid JWS consists of the following components : The JOSE Header, the JWS Payload and the JWS Signature \cite{rfc7515}.\newline
+The ``JSON Web Signature (JWS) represents content secured with digital signatures or Message Authentication Codes (MACs) using JSON-based  data structures'' \cite{rfc7515}.
+A valid JWS consists of the following components: The JOSE Header, the JWS Payload and the JWS Signature \cite{rfc7515}.\newline
 \subsection{The Components}
-The \textbf{JOSE Header} (JSON Object Signing and Encryption ) is a JSON object consisting of a set of Header Parameters, which defines the parameters and the cryptographic operations used to secure the JWS Payload \cite{rfc7515}. There are two types of headers, which combined form the JOSE Header: \begin{center} The \textbf{JWS Protected Header} and the \textbf{JWS Unprotected Header}.
+The \textbf{JOSE Header} (JSON Object Signing and Encryption) is a JSON object consisting of a set of Header Parameters, which defines the parameters and the cryptographic operations used to secure the JWS Payload \cite{rfc7515}. There are two types of headers, which combined form the JOSE Header: \begin{center} The \textbf{JWS Protected Header} and the \textbf{JWS Unprotected Header}.
 \end{center}
-Both are JSON objects, but the difference is the JWS Protected Header contains the integrity protected Header Parameters whereas the JWS Unprotected Header contains the integrity unprotected parameters.\newline
-An example for a Header Parameter is the "alg" (algorithm) Header Parameter which must be present in the JOSE Header. This parameter "identifies the cryptographic algorithm used to secure the JWS. The JWS Signature is not valid if the "alg" value does not represent a supported algorithm or if there is no key for use with that algorithm associated with the party that digitally signed or MACed the content" \cite{rfc7515}.\newline \newline
-The \textbf{JWS Payload} can be described as the "sequence of octets to be secured -- a.k.a. the message. It can be any arbitrary sequence of octets"\cite{rfc7515}.\newline
+Both are JSON objects, but the difference is that the JWS Protected Header contains the integrity protected Header Parameters whereas the JWS Unprotected Header contains the integrity unprotected parameters.\newline
+An example for a Header Parameter is the \texttt{alg} (algorithm) Header Parameter which must be present in the JOSE Header. This parameter ``identifies the cryptographic algorithm used to secure the JWS. The JWS Signature is not valid if the "alg" value does not represent a supported algorithm or if there is no key for use with that algorithm associated with the party that digitally signed or MACed the content'' \cite{rfc7515}.\newline \newline
+The \textbf{JWS Payload} can be described as the ``sequence of octets to be secured -- a.k.a. the message. It can be any arbitrary sequence of octets''\cite{rfc7515}.\newline
 The claims in a JWT, encoded as a JSON object, are often used as the payload \cite{rfc7519}.\newline
-Two examples for claim names, both not mandatory, but very useful, are "iss" and "exp". "The "iss" (issuer) identifies the principal that issued the JWT" \cite{rfc7519} and "the "exp" (expiration time) identifies when the JWT MUST NOT be accepted for processing "\cite{rfc7519}. \newline \newline
-The \textbf{JWS Signature} "is the computation of a Mac or digital signature over the JWS Protected Header and the JWS Payload"\cite{rfc7515}.\newline 
+Two examples for claim names, both not mandatory, but very useful, are "iss" and "exp". ``The "iss" (issuer) identifies the principal that issued the JWT'' \cite{rfc7519} and ``the "exp" (expiration time) identifies when the JWT MUST NOT be accepted for processing ''\cite{rfc7519}. \newline \newline
+The \textbf{JWS Signature} ``is the computation of a Mac or digital signature over the JWS Protected Header and the JWS Payload''\cite{rfc7515}.
 \subsection{The serialization}
 The JWS can be further characterized by its two serializations:\begin{center} The \textbf{JWS Compact Serialization} and the \textbf{JWS JSON Serialization}.\end{center}
-In the JWS Compact Serialization the JWS is represented as a compact, URL-safe string \cite{rfc7515} and can be portrayed in the following form:
+In the JWS Compact Serialization the JWS is represented as a compact, URL-safe string \cite{rfc7515} and can be portrayed in the form displayed in Figure 5:
 \begin{figure}
 \centering
-\includegraphics[width=10cm]{Pages/JWS/CompactSerialization.png}
+\includegraphics[width=9cm]{Pages/JWS/CompactSerialization.png}
 \caption{JWS Compact Serialization}\cite{Compact}
 \end{figure}
-
-The dots are used to concatenate the components.
-In this serialization, the JWS Protected Header is used as the JOSE Header. Therefore, no JWS Unprotected Header will be used.
-
+The dots are representing the concatenation of the components.
+In this serialization, the JWS Protected Header is used as the JOSE Header. Therefore, no JWS Unprotected Header will be used.\newline
 In contrast to the JWS JSON Serialization, the JWS Compact Serialization provides no syntax for a JWS Unprotected Header and only supports one digital signature/MAC.
 In the JWS JSON Serialization there are two related syntaxes: A flattered syntax, to secure content with only one MAC/digital signature and a fully general syntax, for securing with more than one MAC/digital signature \cite{rfc7515}. In this section, only the fully general syntax is treated. 
-A JWS in the fully general JWS JSON Serialization "includes 2 top-level elements: payload and signatures (which is a JSON array), and three sub elements under each entry of the signatures array: protected, header and signature"\cite{Dummies}.
-In each entry at least one of the values "protected" or "header" must be present to guarantee the "alg" Header Parameter is present \cite{rfc7515}.\newline
+A JWS in the fully general JWS JSON Serialization ``includes 2 top-level elements: payload and signatures (which is a JSON array), and three sub elements under each entry of the signatures array: protected, header and signature''\cite{Dummies}.
+In each entry at least one of the values "protected'' or "header" must be present to guarantee the "alg" Header Parameter is present \cite{rfc7515}.\newline
 An example of this concept can be displayed as follows:\newline 
 	\begin{figure}
 \centering
@@ -42,42 +39,39 @@ For both types of serializations, the computation of a JWS is similar. To create
 \begin{enumerate} [leftmargin=1cm,rightmargin=1cm]\itemsep0.2em
 \item Generate the desired content, which will be the payload of the JWS.
 \item Compute the Base64Url-encoded payload. 
-\item "Create the JOSE Header with the desired set of Header Parameter as a JSON object" \cite{rfc7515}.
+\item ``Create the JOSE Header with the desired set of Header Parameter as a JSON object'' \cite{rfc7515}.
 \item Compute the UTF8 representation of the JWS Protected Header and base64url-encode it.
-\item Create the signature by using the algorithm, defined in "alg",\newline over 
+\item Create the signature by using the algorithm, defined in texttt{alg},\newline over the \textbf{JWS Signing Input}, which creation is displayed in Figure 7. 
 \begin{figure}
 \centering
 \includegraphics[width=8cm]{Pages/JWS/SigningInput.png}
 \caption{JWS Signing Input}\cite{Compact} (Modified)
-\end{figure}
-, which is defined as the \textbf{JWS Signing Input}. If "alg" has the value "none", there will be no signature.
+\end{figure} If \texttt{alg} has the value \texttt{none}, there will be no signature.
 \item Compute the encoded signature by base64url-encode the JWS Signature .
 \item For the JWS JSON Serialization the steps 3-6 have to be repeated for each MAC/digital signature defined in the JWS JOSE Header.
 \item Compute the specific serialization output. For the structure look at the description of JWS Compact Serialization and JWS JSON Serialization.
 \end{enumerate} 
 After the computation the valid JWS could be placed in the payload of an MQTT message and sent to the intended receiver, where it should be validated.
-As the computation of a JWS, the validation of a JWS is again similar for both types of serialization. It is important to note that if there are multiple signatures, like in the fully general JWS JSON Serialization,  it is application-specific how many and which JWS Signature must be validated successfully \cite{rfc7515}. However, at least one JWS Signature MUST be validated successfully.
+As the computation of a JWS, the validation of a JWS is again similar for both types of serialization. It is important to note that if there are multiple signatures, like in the fully general JWS JSON Serialization,  it is application-specific how many and which JWS Signatures must be validated successfully \cite{rfc7515}. However, at least one JWS Signature must be validated successfully.
 To validate a JWS, the following steps have to be performed:\newline  
 \begin{enumerate} [leftmargin=1cm, rightmargin=1cm] \itemsep0.3em
-\item "Parse the JWS representation to extract the serialized values for the components of the JWS" \cite{rfc7515}. Look at the specific serialization for the components.
+\item ``Parse the JWS representation to extract the serialized values for the components of the JWS'' \cite{rfc7515}. Look at the specific serialization for the components.
 \item Decode the base64url-encoded JWS Protected Header.
 \item Verify that the result of step 2 is a UTF8-encoded, valid JSON object.
 \item For the JWS Compact Serialisation the JWS Protected header is used as the JOSE Header. For the JWS JSON Serialisation the JWS Protected Header Members and the JWS Unprotected Header Members combined build the JOSE Header.
 \item Verify that all fields, which are required to be supported, are understood and can be processed by the implementation.
-
 \item Decode the Base64Url-encoded JWS Payload.
 \item Decode the Base64Url-encoded JWS Signature.
-\item Validate if the JWS Signing input maced/digitally signed conformed the JWS Signature.
+\item Validate if the JWS Signing input MACed/digitally signed conformed the JWS Signature.
 \item For the JWS JSON Serialisation the steps 4-8 have to be repeated for each MAC/digital signature defined in the JWS JOSE Header.
-\item The JWS MUST be considered invalid if all validations in step 9 failed. (In the case of JWS Compact Serialization it is easy to indicate whether the JWS was validated successfully or not, by the result, whereas in the case of the JWS JSON serialization the result only indicates which validation was successfull and which not.)
+\item The JWS must be considered invalid if all validations in step 9 failed. (In the case of JWS Compact Serialization it is easy to indicate whether the JWS was validated successfully or not, by the result, whereas in the case of the JWS JSON serialization the result only indicates which validation was successfull and which not.)
 \end{enumerate}
 How precise a JWS can provide integrity depends on which and how much MACs/digital signatures are being used. If there is no algorithm, integrity cannot be guaranteed. 
-
 \subsection{Input on MQTT packet}
-To exemplify the impact of an JWS on a MQTT packet in this section a JWS will be created and appended to the exsisting MQTT packten from chapter 3. \newline As serialization for the JWS the JWS Compact Serialization will be used.
-To integrity-protec the message "integrity can be guaranteed, if you are able to recalculate this part:" the HMAC with SHA-256 (HS256) will be used along with the key "e9r3rZrvAqEMkAFRpXP9m8pNAXYAQmT4TcmAdHusePWQBspX98bM\newline xHfkp0bHcNWG".\newline
-Executing the computation steps in chapter 7.4 the following valid JWS is created:\newline eyJhbGciOiJIUzI1NiJ9.aW50ZWdyaXR5IGNhbiBiZSBndWFyYW50ZWVkLC\newline BpZiB5b3UgYXJlIGFibGUgdG8gcmVjYWxjdWxhdGUgdGhpcyBwYXJ0Og.ey\newline JhbGciOiJIUzI1NiJ9.ZWViNGQxYmZhMzA0YWQwNzdiOGM5Y2U1ZWUwN\newline mE5Nzc4MGYwNzZmNQ ( line break only for represetational purpose). \newline
-To attach the created JWS to the given basic MQTT packet, it must be hexa-decimal encoded resulting : \newline 65794a68624763694f694a49557a49314e694a392e615735305a576479615852354947\newline4e68626942695a53426e64574679595735305a57566b4c4342705a6942356233556759\newline584a6c494746696247556764473867636d566a5957786a645778686447556764476870\newline6379427759584a304f672e65794a68624763694f694a49557a49314e694a392e5a5756\newline694e475178596d5a684d7a4130595751774e7a64694f474d35593255315a5755774e6\newline d45354e7a63344d4759774e7a5a6d4e51 . \newline Table 4 represens the MQTT packet with the appended JWS is :
+To exemplify the impact of an JWS on a MQTT packet in this section a JWS will be created and appended to the existing MQTT packet from Section 3. \newline As serialization for the JWS the JWS Compact Serialization will be used.
+To integrity-protect the message ``integrity can be guaranteed, if you are able to recalculate this part:'' the HMAC with SHA-256 (HS256) will be used along with the key ``e9r3rZrvAqEMkAFRpXP9m8pNAXYAQmT4TcmAdHusePWQBspX98bM\newline xHfkp0bHcNWG''.\newline
+Executing the computation steps in chapter 7.4 the following valid JWS is created:\newline eyJhbGciOiJIUzI1NiJ9.aW50ZWdyaXR5IGNhbiBiZSBndWFyYW50ZWVkLC\newline BpZiB5b3UgYXJlIGFibGUgdG8gcmVjYWxjdWxhdGUgdGhpcyBwYXJ0Og.ey\newline JhbGciOiJIUzI1NiJ9.ZWViNGQxYmZhMzA0YWQwNzdiOGM5Y2U1ZWUwN\newline mE5Nzc4MGYwNzZmNQ (line break only for represetational purpose). \newline
+To attach the created JWS to the given basic MQTT packet, it must be hexa-decimal encoded resulting in: \newline 65794a68624763694f694a49557a49314e694a392e615735305a576479615852354947\newline4e68626942695a53426e64574679595735305a57566b4c4342705a6942356233556759\newline584a6c494746696247556764473867636d566a5957786a645778686447556764476870\newline6379427759584a304f672e65794a68624763694f694a49557a49314e694a392e5a5756\newline694e475178596d5a684d7a4130595751774e7a64694f474d35593255315a5755774e6\newline d45354e7a63344d4759774e7a5a6d4e51 . \newline Table 4 represents the MQTT packet with the appended JWS is:
 
 \begin{table}[]
 \centering
