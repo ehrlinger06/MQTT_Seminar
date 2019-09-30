@@ -42,7 +42,9 @@ As already stated, the length of the output depends on the hash function itself,
 HMAC’s are used as a security enhancing feature, but next to the security features speed plays an essential role because the best security is beginning to seem useless when securing a packet is by far the most complicated thing in the whole chain. The speed is given in Throughput, so how much data can be processed per time unit when using MD5 the throughput is 756,0 MB/S \cite{MAX}, this comes down to 12096 message blocks per second or 0,08ms (=milliseconds) per block. When using SHA-1, the throughput goes up to 1024,0 MB/s \cite{MAX}, this comes down to 16384 message blocks per second or 0,06ms.
 
 \subsection{Disadvantages}
-The use of HMAC as a measurment for integrity does not come with any directly attached disadvantages...
+The use of HMAC as a measurment for integrity does not come with any directly attached disadvantages. In the form of a too high computation time, a to large overhead or a too large key to store on the device. \\
+Despite this missing directly attached disadvantages, there is a disadvantage,, in the form of missing self implementation.
+For the use of HMAC, a hash function and an xor function is necessary, if the developer does not implement these for himself or even check for the correctness of the used open source functions, he will be vulnerable. This vulnerability is present, but it will be very small in most cases, because the more people working on and using this pieces of code, the better the maintancen and correctness will be(as already stated in section4.1). 
 
 \subsection{Impact on MQTT packet}
 %key: e9r3rZrvAqEMkAFRpXP9m8pNAXYAQmT4TcmAdHusePWQBspX98bMxHfkp0bHcNWG
