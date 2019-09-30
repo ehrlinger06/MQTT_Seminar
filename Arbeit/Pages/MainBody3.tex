@@ -5,7 +5,7 @@ To guarantee the integrity of transfered data, there is the possibility to use M
 \begin{figure}
 \centering
 \includegraphics[width=6cm]{Pages/Merkle/merkleTree.png}
-\caption{Merkle Tree Structure}
+\caption{Merkle Tree Structure \cite{METR}}
 \end{figure}
 
 In Fig 1. the data (d) is shown with the letter „D“ and the nodes are represented with the letter N. The data itself is not considered part of the Merkle Tree. The Nodes h(D\textsubscript{i})(i = 1,..., 8) are the hashed values of the data and this is where the Merkle Tree starts. Nodes in the same row are considered as siblings and the nodes above are their parents, which values are deviated from their children. Nodes without children are called leaf nodes. This hash tree is also called binary tree because every parent has two children. Binary trees have a height H with $ 2^{H} $ leaves, and $  2^{H} $ - 1 nodes. \cite{MT} 
@@ -18,7 +18,7 @@ To hash the data you have to choose a function that is able to do this. One choi
 \begin{figure}
 \centering
 \includegraphics[width=5cm]{Pages/Merkle/API.png}
-\caption{Authentication Path}
+\caption{Authentication Path [JLMS03]}
 \end{figure}
 
 The circle in Fig. 2 represents the root node; the grey square is the leaf’s pre-image, and the white squares biuld the authentication path of the grey square.
