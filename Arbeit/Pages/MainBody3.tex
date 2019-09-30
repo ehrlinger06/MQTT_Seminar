@@ -29,7 +29,7 @@ required is bounded by $ 1.5 log^2 $  N/loglog N hash values, and the worstcase 
 per output." \cite{MT}
 
 \subsection{Impact on MQTT packet}
-In addition to signatures, hash trees can be used to protect data that is stored or exchanged from being altered and this will have an impact to the packet itself. An example of how a MQTT packet looks like after its integrity is guaranteed using a Merkle Tree is shown in table 3 - MQTT paket with attached MAC using a Merkle Tree. In this example SHA-1 is the used hash function. If we use the Merkle Tree method on the sentence that was mentioned before which is "integrity can be guaranteed, if you are able to recalculate this part:", the result is: f7 87 ec 5e be 3e 5c 53 2c 3c 7b d2 04 94 c8 21 44 39 4b 18. This has to be attached to the MQTT paket to ensure its security and therefore the the length increases from 133 to 153 bytes.
+In addition to signatures, hash trees can be used to protect data that is stored or exchanged from being altered and this will have an impact to the packet itself. An example of how a MQTT packet looks like after its integrity is guaranteed using a Merkle Tree is shown in table 3 - MQTT paket with attached MAC using a Merkle Tree. In this example SHA-1 is the used hash function. If we use the Merkle Tree method on the sentence that was mentioned before which is "integrity can be guaranteed, if you are able to recalculate this part:", the result is: f7 87 ec 5e be 3e 5c 53 2c 3c 7b d2 04 94 c8 21 44 39 4b 18. This has to be attached to the MQTT paket to ensure its security and therefore the length increases from 133 to 153 bytes.
 
 \begin{table}[]
 \centering
