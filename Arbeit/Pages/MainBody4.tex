@@ -27,7 +27,7 @@ In this serialization, the JWS Protected Header is used as the JOSE Header. Ther
 In contrast to the JWS JSON Serialization, the JWS Compact Serialization provides no syntax for a JWS Unprotected Header and only supports one digital signature/MAC.
 In the JWS JSON Serialization there are two related syntaxes: A flattered syntax, to secure content with only one MAC/digital signature and a fully general syntax, for securing with more than one MAC/digital signature \cite{rfc7515}. In this section, only the fully general syntax is treated. 
 A JWS in the fully general JWS JSON Serialization ``includes 2 top-level elements: payload and signatures (which is a JSON array), and three sub elements under each entry of the signatures array: protected, header and signature''\cite{Dummies}.
-In each entry at least one of the values "protected'' or "header" must be present to guarantee the "alg" Header Parameter is present \cite{rfc7515}.\newline
+In each entry at least one of the values \texttt{protected} or \texttt{header} must be present to guarantee the texttt{alg} Header Parameter is present \cite{rfc7515}.\newline
 An example of this concept can be displayed in Figure 6:\newline 
 	\begin{figure}
 \centering
@@ -35,7 +35,7 @@ An example of this concept can be displayed in Figure 6:\newline
 \caption{JWS JSON Serialization} \cite{JSON}
 \end{figure}
 \subsection{The computation and validation }
-For both types of serializations, the computation of a JWS is similar. To create a valid JWS the following steps have to be performed \cite{rfc7515}: 
+For both types of serializations, the computation of a JWS is similar. To create a valid JWS the following steps have to be performed (based on\cite{rfc7515}): 
 \begin{enumerate} [leftmargin=1cm,rightmargin=1cm]\itemsep0.2em
 \item Generate the desired content, which will be the payload of the JWS.
 \item Compute the Base64Url-encoded payload. 
@@ -53,7 +53,7 @@ For both types of serializations, the computation of a JWS is similar. To create
 \end{enumerate} 
 After the computation the valid JWS could be placed in the payload of an MQTT message and sent to the intended receiver, where it should be validated.
 As the computation of a JWS, the validation of a JWS is again similar for both types of serialization. It is important to note that if there are multiple signatures, like in the fully general JWS JSON Serialization,  it is application-specific how many and which JWS Signatures must be validated successfully \cite{rfc7515}. However, at least one JWS Signature must be validated successfully.
-To validate a JWS, the following steps have to be performed:\newline  
+To validate a JWS, the following steps have to be performed (based on\cite{rfc7515}):\newline  
 \begin{enumerate} [leftmargin=1cm, rightmargin=1cm] \itemsep0.3em
 \item ``Parse the JWS representation to extract the serialized values for the components of the JWS'' \cite{rfc7515}. Look at the specific serialization for the components.
 \item Decode the base64url-encoded JWS Protected Header.
