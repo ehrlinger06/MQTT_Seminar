@@ -1,10 +1,10 @@
-\section{MQTT Packet}
+\section{A Basis MQTT Packet}
 
-In this chapter a MQTT packet gets introduced, this will be used to show the impact of the presented techniques on a MQTT packet.
+The MQTT packet introduced later in this section will be used to show the impact of the ,in the following chapters presented, techniques on a MQTT packet.
 The used packet contains a PUBLISH-type message for the topic "/is/it/of/integrity" the contained message reads "integrity can be guaranteed, if you are able to recalculate this part:".
-The content of the packet will be alter according to the newly attached content, consisting of the calculations done with the individually used techniques. \\
+The content of the packet will be altered according to the newly attached content, consisting of the calculations done with the individually used techniques. \\
 \newpage
-The packet itself will be displayed in a hexa-decimal notation: \\
+The packet itself will be displayed in a hexa-decimal notation as shown in Tabelle \ref{tab:my-table1}: \\
 
 \begin{table}[]
 \centering
@@ -20,7 +20,7 @@ The packet itself will be displayed in a hexa-decimal notation: \\
 70 & 61 & 72 & 74 & 3a &    &    &  &    &    &    &    &    &    &    &    &    \\  
 \end{tabular}
 \caption{MQTT-packet with the according markers}
-\label{tab:my-table}
+\label{tab:my-table1}
 \end{table}
 A MQTT-packet does not only consist of MQTT specific data, it also consists of other protocols, which are needed for submitting the packet.
 This additional information is made up from control information needed for the transport of the packet. The part underlined with a dashed line marks the Internet Protocol (IP), the underlining with a dotted line marks the Transmission Control Protocol (TCP).
