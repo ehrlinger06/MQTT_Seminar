@@ -16,7 +16,7 @@ Two examples for claim names, both not mandatory, but very useful, are "iss" and
 The \textbf{JWS Signature} ``is the computation of a Mac or digital signature over the JWS Protected Header and the JWS Payload''\cite{rfc7515}.
 \subsection{The serialization}
 The JWS can be further characterized by its two serializations:\begin{center} The \textbf{JWS Compact Serialization} and the \textbf{JWS JSON Serialization}.\end{center}
-In the JWS Compact Serialization the JWS is represented as a compact, URL-safe string \cite{rfc7515} and can be portrayed in the form displayed in Figure 5:
+In the JWS Compact Serialization the JWS is represented as a compact, URL-safe string \cite{rfc7515} and can be portrayed in the form displayed in Figure 5.
 \begin{figure}
 \centering
 \includegraphics[width=9cm]{Pages/JWS/CompactSerialization.png}
@@ -28,7 +28,7 @@ In contrast to the JWS JSON Serialization, the JWS Compact Serialization provide
 In the JWS JSON Serialization there are two related syntaxes: A flattered syntax, to secure content with only one MAC/digital signature and a fully general syntax, for securing with more than one MAC/digital signature \cite{rfc7515}. In this section, only the fully general syntax is treated. 
 A JWS in the fully general JWS JSON Serialization ``includes 2 top-level elements: payload and signatures (which is a JSON array), and three sub elements under each entry of the signatures array: protected, header and signature''\cite{Dummies}.
 In each entry at least one of the values "protected'' or "header" must be present to guarantee the "alg" Header Parameter is present \cite{rfc7515}.\newline
-An example of this concept can be displayed as follows:\newline 
+An example of this concept can be displayed in Figure 6:\newline 
 	\begin{figure}
 \centering
 \includegraphics[width=8cm]{Pages/JWS/JSONSerialization.png}
