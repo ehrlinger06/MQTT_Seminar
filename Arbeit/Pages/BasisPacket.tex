@@ -1,8 +1,13 @@
 \section{A Basis MQTT Packet}
 
-The MQTT packet introduced later in this section will be used to show the impact of the ,in the following chapters presented, techniques on a MQTT packet.
-The used packet contains a PUBLISH-type message for the topic "/is/it/of/integrity" the contained message reads "integrity can be guaranteed, if you are able to recalculate this part:".
-The content of the packet will be altered according to the newly attached content, consisting of the calculations done with the individually used techniques. \\
+The MQTT packet introduced later in this section will be used to show the impact
+of the, in the following chapters presented, techniques on an MQTT packet.
+The used packet contains a PUBLISH-type message for the topic \\ "/is/it/of/integrity",
+the contained message reads "integrity can be guaranteed, if you are able to recalculate
+this part:". The content of the packet will be altered according to the
+newly attached content, consisting of the calculations done with the individually
+used techniques.
+ \\
 \newpage
 The packet itself will be displayed in a hexa-decimal notation as shown in Tabelle \ref{tab:my-table1}: \\
 
@@ -22,6 +27,13 @@ The packet itself will be displayed in a hexa-decimal notation as shown in Tabel
 \caption{MQTT-packet with the according markers}
 \label{tab:my-table1}
 \end{table}
-A MQTT-packet does not only consist of MQTT specific data, it also consists of other protocols, which are needed for submitting the packet.
-This additional information is made up from control information needed for the transport of the packet. The part underlined with a dashed line marks the Internet Protocol (IP), the underlining with a dotted line marks the Transmission Control Protocol (TCP).
-The main parts of the here visible packet, will remain unchanged, even when more information is added later down the line, there is only one byte, which indicates the remaining length of the MQTT packet, that will be changed according to the attached piece of information, the current value is correct for a remaining length of 92 bytes and is marked by a waved line in the packet.
+An MQTT-packet does not only consist of MQTT specific data, but it also consists
+of other protocols, which are needed for submitting the packet. This additional
+information is made up of control information needed for the transport of
+the packet. The part underlined with a dashed line marks the Internet Protocol
+(IP), the underlining with a dotted line marks the Transmission Control Protocol
+(TCP). The main parts of the here visible packet will remain unchanged, even
+when more information is added later down the line, there is only one byte,
+which indicates the remaining length of the MQTT packet, that will be changed
+according to the attached piece of information, the current value is correct for a
+remaining length of 92 bytes and is marked by a waved line in the packet.
